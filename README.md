@@ -65,5 +65,22 @@ Expected output:
 ```
 
 ## Setup
-1. Install the bundler gem by running:
-'gem install bundler'
+
+```
+git clone git@github.com:IscencoAl/toy_robot.git
+cd toy_robot
+gem install bundler
+bundle install
+```
+
+## Execution
+
+```
+ruby main.rb
+```
+
+## Tests
+
+```
+bundle exec rspec spec
+```
