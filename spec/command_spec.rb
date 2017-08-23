@@ -1,8 +1,8 @@
-require "spec_helper"
-require "command"
+require 'spec_helper'
+require 'command'
 
-RSpec.describe Command do
-  describe "#new" do
+describe Command do
+  describe '#new' do
     subject { described_class.new }
 
     it { is_expected.to be_a(Command) }

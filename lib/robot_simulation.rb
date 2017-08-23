@@ -2,7 +2,6 @@ require_relative 'table'
 require_relative 'robot'
 
 class RobotSimulation
-
   attr_reader :robot
   attr_reader :table
 
@@ -11,10 +10,9 @@ class RobotSimulation
     @robot = robot
   end
 
-  def place(x,y,direction)
+  def place(x, y, direction)
     robot.x = x
     robot.y = y
     robot.direction = direction
   end
-
 end

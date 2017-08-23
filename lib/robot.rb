@@ -1,6 +1,5 @@
 class Robot
-
-  DIRECTIONS = %w(NORTH EAST SOUTH WEST)
+  DIRECTIONS = %w[NORTH EAST SOUTH WEST].freeze
 
   attr_accessor :x
   attr_accessor :y
@@ -17,5 +16,4 @@ class Robot
   def placed?
     !x.nil? && !y.nil? && !direction.nil?
   end
-
 end

@@ -7,10 +7,9 @@ module Commands
 
       new_position = new_position()
 
-      if @simulation.table.position_is_valid?(new_position[0],new_position[1])
-        @simulation.robot.x = new_position[0]
-        @simulation.robot.y = new_position[1]
-      end
+      return unless @simulation.table.position_is_valid?(new_position[0], new_position[1])
+      @simulation.robot.x = new_position[0]
+      @simulation.robot.y = new_position[1]
     end
 
     def valid?
@@ -21,7 +20,7 @@ module Commands
 
     def new_position
       robot = @simulation.robot
-   
+
       case robot.direction
       when 'NORTH'
         [robot.x, robot.y + 1]
@@ -33,6 +32,5 @@ module Commands
         [robot.x + 1, robot.y]
       end
     end
-
   end
 end

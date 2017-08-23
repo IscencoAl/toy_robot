@@ -13,7 +13,8 @@ module Commands
     end
 
     def direction_left
-      Robot::DIRECTIONS[(Robot::DIRECTIONS.index(@simulation.robot.direction) - 1) % 4]
+      directions = Robot::DIRECTIONS
+      directions[(directions.index(@simulation.robot.direction) - 1) % 4]
     end
   end
 end

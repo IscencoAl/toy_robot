@@ -1,4 +1,4 @@
-Dir[File.join(File.dirname(__FILE__), "commands/*.rb")].each do |file|
+Dir[File.join(File.dirname(__FILE__), 'commands/*.rb')].each do |file|
   require file
 end
 
@@ -8,7 +8,7 @@ class CommandInterpreter
   end
 
   def parse(input)
-    processed_command = input.gsub(","," ").split
+    processed_command = input.tr(',', ' ').split
 
     command_name = processed_command[0]
     command_args = processed_command[1..-1]
@@ -16,9 +16,9 @@ class CommandInterpreter
     command = detect_command(command_name)
 
     if command
-      command = command.new(simulation: @simulation, arguments: command_args)
+      command.new(simulation: @simulation, arguments: command_args)
     else
-      puts "Invalid Command" unless command_name =~ /exit/
+      puts 'Invalid Command' unless command_name =~ /exit/
     end
   end
 
@@ -30,12 +30,11 @@ class CommandInterpreter
 
   def available_commands
     @available_commands ||= {
-      "REPORT" => Commands::Report,
-      "PLACE" => Commands::Place,
-      "RIGHT" => Commands::Right,
-      "LEFT" => Commands::Left,
-      "MOVE" => Commands::Move
+      'REPORT' => Commands::Report,
+      'PLACE' => Commands::Place,
+      'RIGHT' => Commands::Right,
+      'LEFT' => Commands::Left,
+      'MOVE' => Commands::Move
     }
   end
-
 end

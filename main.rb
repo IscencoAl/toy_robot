@@ -1,10 +1,9 @@
 require_relative 'lib/robot_simulation'
 require_relative 'lib/command_interpreter'
 
-
 command_interpreter = CommandInterpreter.new
 
-puts "input command:"
+puts 'input command:'
 
 loop do
   input = gets

@@ -5,12 +5,11 @@ module Commands
     def execute
       return unless valid?
       puts @simulation.robot.current_position
-      return @simulation.robot.current_position
+      @simulation.robot.current_position
     end
 
     def valid?
       @simulation.robot.placed?
     end
-
   end
 end

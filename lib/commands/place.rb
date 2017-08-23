@@ -16,7 +16,7 @@ module Commands
     def valid_table_position?
       @x = @arguments[0]
       @y = @arguments[1]
-      return false if !( @x.to_i.to_s == @x || @y.to_i.to_s == @y)
+      return false unless @x.to_i.to_s == @x || @y.to_i.to_s == @y
       @simulation.table.position_is_valid?(@x, @y)
     end
 
@@ -26,6 +26,5 @@ module Commands
     rescue NoMethodError
       false
     end
-
   end
 end
