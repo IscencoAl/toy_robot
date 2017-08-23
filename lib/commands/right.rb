@@ -1,11 +1,12 @@
 require_relative '../command'
+require_relative '../position'
 
 module Commands
   class Right < ::Command
     def execute
       return unless valid?
-
-      @simulation.robot.direction = direction_right
+      position = @simulation.robot.current_position
+      position.update_direction(direction_right)
     end
 
     def valid?
@@ -13,8 +14,9 @@ module Commands
     end
 
     def direction_right
-      directions = Robot::DIRECTIONS
-      directions[(directions.index(@simulation.robot.direction) + 1) % 4]
+      directions = Position::DIRECTIONS
+      current_direction = @simulation.robot.current_position.direction
+      directions[(directions.index(current_direction) + 1) % 4]
     end
   end
 end

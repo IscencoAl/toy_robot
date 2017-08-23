@@ -1,7 +1,11 @@
 require_relative 'lib/robot_simulation'
 require_relative 'lib/command_interpreter'
 
-command_interpreter = CommandInterpreter.new
+table = Table.new(width: 5, height: 5)
+
+robot_simulation = RobotSimulation.new(table: table)
+
+command_interpreter = CommandInterpreter.new(robot_simulation)
 
 puts 'input command:'
 

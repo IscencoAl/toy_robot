@@ -1,19 +1,19 @@
 class Robot
-  DIRECTIONS = %w[NORTH EAST SOUTH WEST].freeze
+  attr_accessor :current_position
 
-  attr_accessor :x
-  attr_accessor :y
-  attr_accessor :direction
+  def initialize
+    @current_position = nil
+  end
 
-  def current_position
+  def report
     if placed?
-      [x, y, direction].join(',')
+      [current_position.x, current_position.y, current_position.direction].join(',')
     else
       'not in place'
     end
   end
 
   def placed?
-    !x.nil? && !y.nil? && !direction.nil?
+    !current_position.nil?
   end
 end

@@ -2,14 +2,16 @@ require 'spec_helper'
 require 'command_interpreter'
 
 describe CommandInterpreter do
+  let(:table) { Table.new(width: 5, height: 5) }
+  let(:robot_simulation) { RobotSimulation.new(table: table) }
   describe '#new' do
-    subject { described_class.new }
+    subject { described_class.new(robot_simulation) }
 
     it { is_expected.to be_a(CommandInterpreter) }
   end
 
   describe '#parse' do
-    let(:command_interpreter) { CommandInterpreter.new }
+    let(:command_interpreter) { CommandInterpreter.new(robot_simulation) }
     context 'invalid commands' do
       inputs = ['place', 'test', 'wrong_input', 'PlaCe 0,0,NORTH']
       inputs.each do |input|

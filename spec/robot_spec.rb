@@ -9,33 +9,36 @@ describe Robot do
   end
 
   let(:robot) { described_class.new }
-  describe '#current_position' do
-    it 'returns position when x and y and direction not nil' do
-      robot.x = 3
-      robot.y = 2
-      robot.direction = 'NORTH'
-      expect(robot.current_position).to eq('3,2,NORTH')
+  describe '#report' do
+    context 'valid position' do
+      let(:position) { Position.new(3, 2, 'NORTH') }
+      it 'returns position when x and y and direction not nil' do
+        robot.current_position = position
+        expect(robot.report).to eq('3,2,NORTH')
+      end
     end
-
-    it 'returns "not in place" if x or/and y or/and direction is nil' do
-      robot.x = 3
-      expect(robot.current_position).to eq('not in place')
+    context 'wrong position' do
+      it 'returns "not in place" if x or/and y or/and direction is nil' do
+        robot.current_position = nil
+        expect(robot.report).to eq('not in place')
+      end
     end
   end
 
   describe '#placed?' do
-    it 'returns false if x or/and y or/and direction is nil' do
-      robot.x = nil
-      robot.direction = 'WEST'
-      robot.y = 0
-      expect(robot.placed?).to be false
+    context 'wrong position' do
+      it 'returns false if x or/and y or/and direction is nil' do
+        robot.current_position = nil
+        expect(robot.placed?).to be false
+      end
     end
 
-    it 'returns true if x and y and direction not nil' do
-      robot.x = 1
-      robot.direction = 'WEST'
-      robot.y = 2
-      expect(robot.placed?).to be true
+    context 'valid position' do
+      let(:position) { Position.new(1, 2, 'WEST') }
+      it 'returns true if x and y and direction not nil' do
+        robot.current_position = position
+        expect(robot.placed?).to be true
+      end
     end
   end
 end

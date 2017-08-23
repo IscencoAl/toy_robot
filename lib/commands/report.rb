@@ -4,8 +4,8 @@ module Commands
   class Report < ::Command
     def execute
       return unless valid?
-      puts @simulation.robot.current_position
-      @simulation.robot.current_position
+      puts @simulation.robot.report
+      @simulation.robot.report
     end
 
     def valid?

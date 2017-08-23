@@ -8,14 +8,16 @@ describe RobotSimulation do
     it { is_expected.to be_a(RobotSimulation) }
   end
 
-  let(:robot_simulation) { described_class.new }
+  let(:table) { Table.new(width: 5, height: 5) }
+  let(:robot_simulation) { described_class.new(table: table) }
+  let(:position) { Position.new(1, 2, 'NORTH') }
 
   describe '#place' do
-    it 'assigne attributes to robot' do
-      expect(robot_simulation.robot).to receive(:x=).with(1)
-      expect(robot_simulation.robot).to receive(:y=).with(2)
-      expect(robot_simulation.robot).to receive(:direction=).with('NORTH')
-      robot_simulation.place(1, 2, 'NORTH')
+    it 'assigne attributes to robot via position' do
+      robot_simulation.place(position)
+      expect(robot_simulation.robot.current_position.x).to eq(1)
+      expect(robot_simulation.robot.current_position.y).to eq(2)
+      expect(robot_simulation.robot.current_position.direction).to eq('NORTH')
     end
   end
 end

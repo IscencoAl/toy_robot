@@ -3,7 +3,7 @@ Dir[File.join(File.dirname(__FILE__), 'commands/*.rb')].each do |file|
 end
 
 class CommandInterpreter
-  def initialize(simulation: RobotSimulation.new)
+  def initialize(simulation)
     @simulation = simulation
   end
 

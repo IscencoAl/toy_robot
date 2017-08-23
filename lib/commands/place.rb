@@ -1,30 +1,33 @@
 require_relative '../command'
+require_relative '../position'
 
 module Commands
   class Place < ::Command
     def execute
       return unless valid?
-      @simulation.place(@x.to_i, @y.to_i, @direction)
+      @simulation.place(@position)
     end
 
     def valid?
-      valid_table_position? && valid_direction?
+      return false unless create_position
+      x = @position.x
+      y = @position.y
+      direction = @position.direction
+      @simulation.check_position(x, y) && valid_direction?(direction)
     end
 
     private
 
-    def valid_table_position?
-      @x = @arguments[0]
-      @y = @arguments[1]
-      return false unless @x.to_i.to_s == @x || @y.to_i.to_s == @y
-      @simulation.table.position_is_valid?(@x, @y)
+    def create_position
+      x = @arguments[0]
+      y = @arguments[1]
+      d = @arguments[2]
+      return false unless x.to_i.to_s == x || y.to_i.to_s == y
+      @position = Position.new(x.to_i, y.to_i, d)
     end
 
-    def valid_direction?
-      @direction = @arguments[2]
-      Robot::DIRECTIONS.include?(@direction)
-    rescue NoMethodError
-      false
+    def valid_direction?(direction)
+      Position::DIRECTIONS.include?(direction)
     end
   end
 end

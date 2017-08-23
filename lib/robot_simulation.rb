@@ -5,14 +5,16 @@ class RobotSimulation
   attr_reader :robot
   attr_reader :table
 
-  def initialize(table: Table.new, robot: Robot.new)
+  def initialize(table: nil, robot: Robot.new)
     @table = table
     @robot = robot
   end
 
-  def place(x, y, direction)
-    robot.x = x
-    robot.y = y
-    robot.direction = direction
+  def place(position)
+    robot.current_position = position
+  end
+
+  def check_position(x, y)
+    table.position_is_valid?(x, y) && table.no_obstacle?(x, y)
   end
 end

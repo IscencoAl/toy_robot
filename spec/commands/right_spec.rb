@@ -6,7 +6,7 @@ describe Commands::Right do
   describe '#valid?' do
     context 'when the robot has been placed' do
       before do
-        simulation.place(0, 0, 'NORTH')
+        simulation.place(Position.new(0, 0, 'NORTH'))
       end
       it { expect(right_command.valid?).to eq(true) }
     end
@@ -19,7 +19,7 @@ describe Commands::Right do
   describe '#execute' do
     context 'when the robot has been placed' do
       before do
-        simulation.place(0, 0, 'NORTH')
+        simulation.place(Position.new(0, 0, 'NORTH'))
       end
       it { expect(right_command.execute).to eq('EAST') }
     end
